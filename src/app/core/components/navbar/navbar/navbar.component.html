@@ -1,0 +1,63 @@
+<div class="navbar navbar-expand-lg ">
+    <div class="logosComponent">
+      <img src="assets/images/wback.png" alt="logoimage" class="logoimage"> 
+    </div>
+
+    <li class="nav-item" style="margin-left: 300px;">
+      <a class="nav-link active" aria-current="page" style="color: white; padding: 10px;" href="#">Home</a>
+      <a class="nav-link active" aria-current="page" style="color: white; padding: 10px;" href="#">About</a>
+      <a class="nav-link active" aria-current="page" style="color: white; padding: 10px;" href="#">Products</a>
+      <a class="nav-link active" aria-current="page" style="color: white; padding: 10px;" href="#" >Contact Us</a>
+    </li>
+    
+
+    
+    <div class="cartsection" style="display: flex; align-items: center; margin-left: 270px;">
+      <h3 style="font-size: 21px;">{{chartNumber}}</h3>
+      <img src="assets/images/trolley.png" class="basketImage" (click)="toggleCartDropdown()" style="margin-left: 5px;">
+      <img src="assets/images/verticalwhiteline.png" style="margin-left: 10px; height: 33px;">
+      <p style="font-size: 17px; margin-left: 10px; color: white; margin-top: 15px;">Login</p>
+  
+      <div class="cart-dropdown" [ngClass]="{'show': showCartDropdown}">
+        <div class="headCartSection" style="display: flex; flex-direction: row;">
+          <p style="font-size: 18px; margin-top: 15px; margin-left: 15px; font-weight: bold;">Shopping Cart</p>
+          <p (click)="toggleCartDropdown()" style="right: 0; position: absolute; margin-right: 20px; font-weight:bold; font-size: 25px; cursor: pointer;">×</p>
+        </div>
+        <hr>
+
+
+        
+        <div style=" max-height: 300px; overflow-y: auto;">
+        <div *ngFor="let item of cartItems" class="productSection" style="display: flex; margin-top: 20px;">
+          <div class="imageSection">
+            <img [src]="item.imageUrl" style="height: 130px; width: 130px; margin-left: 20px;">
+          </div>
+          <div class="informationSection" style="margin-left: 20px;">
+            <h5>{{ item.name }}</h5>
+            <p>R {{ item.price }}</p>
+            <div class="endInfoSection" style="display: flex;">
+              <div class="input-group">
+                <button id="decrement" class="DecreButton" (click)="decrementCart(item.id)">-</button>
+                <h3 class="input">{{ item.quantity }}</h3>
+                <button id="increment" class="IncreButton" (click)="incrementCart(item.id)">+</button>
+              </div>
+              <p (click)="removeFromCart(item.id)" style="text-decoration: underline; margin-left: 10px; margin-top: 20px; cursor: pointer;" >Remove</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+        <hr>
+        <div class="bottomSection" style="margin-left: 30px; margin-bottom: 10px;">
+          <div style="display: flex;">
+            <p>Estimated Total: </p>
+            <h6 class="totalPrice" style="right: 0; position: absolute; margin-right: 35px; font-size: 18px;">R {{ subTotal }}</h6>
+          </div>
+          <button style="height: 30px; width: 320px; border-color: transparent; background-color: black ; color: white;">Checkout</button>
+          <span style="margin-left: 46px; font-size: 10px; margin-top: 10px;">Tax included and shipping calculated at checkout</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" style="width: 18px; height: 9; position: relative; margin-left: 10px;">
+        </div>
+      </div>
+    </div>
+  
+
+</div>

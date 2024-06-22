@@ -1,0 +1,10 @@
+.logopart {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer{
+  margin-top: auto; /* Push footer to the bottom */
+}

@@ -1,0 +1,43 @@
+<div class="default" style="margin-left: 50px; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+  <div class="first-header" style="display: flex;">
+    <div>
+      <h2 style=" margin-top: 30px; margin-left: 170px;">Products You Need</h2>
+    </div>
+    <div class="search-container" style="display: flex; border: 1px solid gray; margin-left: 270px; border-radius: 20px; margin-top: 35px;">
+      <form (submit)="updateSearchText(); $event.preventDefault();">
+        <img src="assets/images/searchsymbol.png" style="height: 25px; width: 25px; margin-left: 9px;">
+        <input type="text" placeholder="Search the Product" style="border-color: transparent; outline: none;" #searchInput/>
+        <button type="submit" style="background-color: black; color: white; border-radius: 20px; border-color: transparent; padding-left: 20px; padding-right: 20px; margin: 4px;" (click)="updateSearchText()">
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="second-part" style="margin-top: 30px; margin-left: 170px;">
+    <button class="all" [ngClass]="{ 'active': isAllClicked, 'inactive': !isAllClicked }" (click)="toggleButton('all')" style="border-radius: 20px; padding-left: 40px; padding-right: 40px; font-size: 15px;" value="all">All</button>
+    <button class="couches" [ngClass]="{ 'active': isCouchesClicked, 'inactive': !isCouchesClicked }" (click)="toggleButton('couches')" style="border-radius: 20px; padding-left: 40px; padding-right: 40px; font-size: 15px; margin-left: 20px;" value="couches">Couches</button>
+    <button class="tvstand" [ngClass]="{ 'active': isTvstandClicked, 'inactive': !isTvstandClicked }" (click)="toggleButton('tvstand')" style="border-radius: 20px; padding-left: 40px; padding-right: 40px; font-size: 15px; margin-left: 20px;" value="tvstand">TV Stands</button>
+    <button class="headboards" [ngClass]="{ 'active': isHeadboardsClicked, 'inactive': !isHeadboardsClicked }" (click)="toggleButton('headboards')" style="border-radius: 20px; padding-left: 40px; padding-right: 40px; font-size: 15px; margin-left: 20px;" value="headboards">Headboards</button>
+    <button class="tableschairs" [ngClass]="{ 'active': isTablesClicked, 'inactive': !isTablesClicked }" (click)="toggleButton('tableschairs')" style="border-radius: 20px; padding-left: 40px; padding-right: 40px; font-size: 15px; margin-left: 20px;" value="tableschairs">Tables & Chairs</button>
+  </div>
+
+  <div class="third-part" style="margin-top: 50px; display: flex; max-width: 1400px; flex-wrap: wrap; margin-left: 170px;">
+    <div *ngFor="let p of productPosts" [ngClass]="{'product-ui': true}" >
+      <div *ngIf="shouldDisplayProduct(p)">
+        <div style="width: 270px; height: auto; background-color: white; margin-left: 20px; margin-bottom: 77px;">
+          <div class="image-container">
+            <img [src]= "p.imageUrl"  class="prodImage">
+          </div>          
+          <p class="title" style="margin-top: 20px; font-size: 11px; font-weight:500; justify-content: center; text-align: center;">{{ p.name }}</p>
+          <div style="display: flex; margin-top: 4px; justify-content: center; text-align: center;">
+            <button style="background-color: beige; color: gray; height: 30px; width: 120px; border: transparent; border-radius: 10px; padding-left: 10px; padding-right: 10px; text-align: center; font-size: 11px;" >R {{p.price}}</button>
+            <button style="margin-left: 20px; background-color: beige; color: gray; height: 30px; width: 220px; border: transparent; border-radius: 10px; padding-left: 20px; padding-right: 20px; text-align: center; font-size: 11px; " (click)="addtoChart(p)">Add to Cart</button>
+          </div>
+          <p style="display: none;">{{p.category}}</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
